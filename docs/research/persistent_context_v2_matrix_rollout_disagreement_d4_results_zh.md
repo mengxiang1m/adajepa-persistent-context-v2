@@ -1,7 +1,9 @@
 # D4 完整预测轨迹分歧开发实验结果
 
-日期：2026-08-25  
-证据等级：前瞻 development feasibility，不是 formal，不验证在线 gate  
+日期：2026-08-25
+
+证据等级：前瞻 development feasibility，不是 formal，不验证在线 gate
+
 状态：采集、原始数据审计和统计审计均有效
 
 ## 1. 问题与方法
