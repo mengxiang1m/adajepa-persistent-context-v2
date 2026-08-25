@@ -7,3 +7,4 @@ wandb
 checkpoints
 *.slurm
 *.sh
+.pytest_tmp_*/

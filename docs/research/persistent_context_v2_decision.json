@@ -1,0 +1,33 @@
+{
+  "schema": "persistent-context-v2-decision-v2",
+  "date": "2026-08-22",
+  "overall_verdict": "CONTEXT_CAUSAL_CHAIN_ESTABLISHED_ON_CONSTRUCTED_TASK",
+  "stage0": "TASK_DYNAMIC_RANGE_ESTABLISHED",
+  "stage1": "HISTORY_VALUE_SUPPORTED",
+  "stage2": "EXPLICIT_CONTEXT_SUPPORTED",
+  "stage3": "CONTEXT_CONDITIONED_WORLD_MODEL_SUPPORTED",
+  "disposition": "GO_REAL_BENCHMARK_TRANSFER_CONTRACT",
+  "valid_evidence": [
+    "persistent_context_v2_outputs/stage0_dev_v1/summary.json",
+    "persistent_context_v2_outputs/stage0_dev_v1/independent_audit.json",
+    "persistent_context_v2_outputs/stage1_formal_v1_repair1/summary.json",
+    "persistent_context_v2_outputs/stage1_formal_v1_repair1/independent_audit.json",
+    "persistent_context_v2_outputs/stage2_pilot_v1_repair1/summary.json",
+    "persistent_context_v2_outputs/stage2_pilot_v1_repair1/independent_audit.json",
+    "persistent_context_v2_outputs/stage3_film_v1/summary.json",
+    "persistent_context_v2_outputs/stage3_film_v1/independent_audit.json"
+  ],
+  "invalid_preserved_evidence": [
+    "persistent_context_v2_outputs/stage1_formal_v1",
+    "persistent_context_v2_outputs/stage2_pilot_v1"
+  ],
+  "allowed_inference": "On the constructed scalar actuator task, a trained single-FiLM world model uses context to change predictions and actions, and a train-prior RLS sequence state recovers nearly all true-context closed-loop benefit with persistence-specific negative controls.",
+  "not_established": "Visual AdaJEPA, PointMaze/PushObj transfer, nonlinear or multi-factor dynamics, learned context encoders, deformable environments, episode-local TTT composition, and real-robot value remain untested.",
+  "allowed_next_action": "Freeze an independent real-benchmark transfer contract, preferably PointMaze with one persistent action-calibration factor, and repeat true-context model-use plus RLS/no-persistence/shuffled/wrong controls before episodic TTT.",
+  "forbidden_next_actions": [
+    "Claim that existing visual AdaJEPA already benefits from persistent context",
+    "Skip the real-benchmark true-context/model-use gate and add memory, LoRA, router, expert, consolidation, or episodic TTT",
+    "Treat the invalid unpaired-condition v1 runs as final evidence",
+    "Tune the completed V2 task, metrics, seeds, factors, or gates to strengthen the result"
+  ]
+}
