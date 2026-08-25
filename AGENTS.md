@@ -11,7 +11,7 @@ Historical continual-TTT prompts, phase records, frozen contracts, decisions, ne
 - Preserve the original episodic AdaJEPA behavior and P0A/Phase A–H artifacts.
 - Do not extend unconditional weight carry merely by changing thresholds, factors, horizons, or metrics.
 - For a new factor or environment, establish the chain `behavioral oracle value -> history identifiability -> persistence-specific closed-loop value -> non-privileged estimator -> learned model only if needed`.
-- Current priority is matrix factor-plus-task-interaction gating, then a non-privileged delay estimator. CoG history inference remains deferred until an enriched Markov/contact-state predictor demonstrates closed-loop true-CoG value.
+- Matrix factor/task-interaction gating, the non-privileged delay estimator, and D4 rollout-disagreement risk feasibility are complete; none established a deployable scene-level safety selector beyond fixed context. If the user authorizes the next investment, prioritize a simple E2 online Bayesian correction study with persistent and changed-factor controls before episode-local TTT. CoG history inference remains deferred until an enriched Markov/contact-state predictor demonstrates closed-loop true-CoG value.
 - Treat weights, optimizer, episode replay, sequence context, sufficient statistics, and RNG as separate states with explicit lifetimes.
 
 ## Evidence and decisions

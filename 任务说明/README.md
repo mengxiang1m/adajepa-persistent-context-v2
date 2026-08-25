@@ -1,6 +1,6 @@
 # 任务说明：文档入口与治理规则
 
-更新日期：2026-08-24
+更新日期：2026-08-25
 
 本目录只保留三类当前入口，避免历史 prompt、阶段报告和聊天记录同时充当“现行路线图”。
 
@@ -31,4 +31,4 @@
 
 ## 当前一句话路线
 
-作者 T 与六组跨-shape formal 已建立 rotation×gain context 的跨任务价值，D3 未找到稳定 harm selector。Delay factor 可精确辨识，但 persistence-specific 行为值未建立。CoG P3a/P3b 已完成，10 Hz 拼接和 100 Hz event ridge 都未形成可部署 predictor，CoG V3/history 暂停。下一候选是 matrix rollout-disagreement harm feasibility；episode-local TTT 和视觉迁移继续后置。
+作者 T 与六组跨-shape 实验已建立 rotation×gain context 的跨任务平均价值。D3 与 D4 均未找到可部署的场景级 harm selector；D4 的完整轨迹分歧主 AUC 为 `0.391`。Delay 可辨识但 persistence-specific 行为值未建立，CoG V3/history 继续暂停。若用户决定继续，最小候选是 E2 在线贝叶斯修正；episode-local TTT 和视觉迁移继续后置。

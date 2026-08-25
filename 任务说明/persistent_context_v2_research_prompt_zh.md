@@ -2,7 +2,7 @@
 
 > **2026-08-22 用户修订：撤销固定数值效果门。** 后续实验不得再用预设的 `25%`、`20/30/40/50%`、`70/75/80%` 同向比例或“置信区间必须跨/不跨 0”等固定阈值自动裁决 `GO/NO-GO`。必须完整报告效应方向、效应大小、置信区间、同向比例、分组异质性和负对照，由用户结合研究成本决定是否继续。实现正确性、身份配对、预算一致性和 raw artifact 完整性仍是有效性审计，不属于被撤销的效果门。历史冻结合同与原始机器输出保留为当时规则下的审计记录，但其阈值裁决不再约束后续研究。
 
-> **2026-08-24 现状校准：本 Prompt 是治理规范，不是从 Stage 0 重新执行的任务清单。** Rotation 与 rotation×gain matrix 已建立 persistent-history 因果证据；T 数据 P1-V2 显示 F0 相对 population 改善 `13.21%`。96 条跨-shape formal 显示 correct fixed `.75` 改善 `9.97%`，factor 改变时 history 平均无收益，因此跨任务物理 context 父命题成立。只读 D3 未找到稳定 harm selector。P2 delay formal 已完成：command/proprio 可 `32/32` 识别 delay，但 persistence-specific 行为值未建立。P3a/P3b CoG 表示审计均已完成：contact/impulse 有局部预测信息，10 Hz 拼接与 100 Hz event ridge 都未形成可部署 predictor；P3b 主比较 `C10-S100=-0.00728`，S100 也未超过 zero response。CoG V3/history 继续暂停，下一候选回到 matrix scene-level harm 的 rollout-disagreement feasibility。优先级以 [`Persistent_Context_V2_后续实验计划_2026-08-23.md`](./Persistent_Context_V2_后续实验计划_2026-08-23.md) 为准。
+> **2026-08-25 现状校准：本 Prompt 是治理规范，不是从 Stage 0 重新执行的任务清单。** Rotation 与 rotation×gain matrix 已建立 persistent-history 因果证据；作者 T 数据和跨-shape formal 均支持 context 的平均闭环价值。Delay 可辨识但 persistence-specific 行为值未建立，CoG 10 Hz/100 Hz 表示均未形成可部署 predictor。D4 已在 96 条未暴露跨形状 development sequence 上完成：fixed `.75` 改善 `11.90%`，但完整 latent rollout 分歧的预注册 harm AUC 仅 `0.391`，不能作为风险 veto；低容量 ridge 也退化为 95/96 条使用 context。是否进入 E2 在线修正实验由用户根据完整证据决定。优先级以 [`Persistent_Context_V2_后续实验计划_2026-08-23.md`](./Persistent_Context_V2_后续实验计划_2026-08-23.md) 为准。
 
 ## 0. 角色与总目标
 
@@ -14,7 +14,7 @@
 - P0A 在冻结的 PushObj-T 条件下得到 `PREMISE_NOT_ESTABLISHED`，说明当前 AdaJEPA episode 内权重更新不构成稳定、低伤害的跨 episode 知识；
 - `persistent-actuator-factor-oracle-v1` 得到 `HISTORY_VALUE_NOT_ESTABLISHED / NO_GO_METHOD`，其弱 cost 收益不足、success 饱和，并且大部分收益可由非持续条件下的总体先验学习或平滑解释。
 - PushObj rotation 与 rotation×gain matrix 在各自冻结条件下支持显式 history context 的闭环价值及 persistence-specific 解释；不得外推为所有 factor、shape、planner 或视觉模型都有效；
-- dead zone、delay 与 matrix 的负向尾部表明 factor 估计准确不等于行为最优；factor-only learned gate 相对 population 正向，但相对 always-context 的额外均值优势仍不确定；task-interaction D0 提高了 outcome 预测相关性，却在硬决策后退化为 always-context，说明预测精度、context 强度和闭环行为必须分开验证；
+- dead zone、delay 与 matrix 的负向尾部表明 factor 估计准确不等于行为最优；factor-only、task-interaction 和 D4 完整轨迹分歧均未形成稳定的场景级风险选择器，说明预测相关性、context 强度和闭环行为必须分开验证；
 - CoG physics oracle 上限稳定存在，但 v1 learned predictor 只回收少量 gap，temporal-GRU v2 未改善；P3a 控制边界拼接和 P3b 100 Hz event ridge 均未形成可部署 predictor。不得直接开发 CoG V3、CoG history encoder 或新 CoG closed-loop formal。
 
 本 V2 是科学上独立的新问题：
@@ -473,9 +473,10 @@ deformable 环境科学上适合研究持续 stiffness、friction 或 tool calib
 1. 保留并归档 Phase A–H、P0A、旧 oracle、所有冻结合同、负结果和 raw artifacts，不再扩展无条件权重持续路线；
 2. matrix D1/D2、作者 T 池 P1-V2、跨-shape formal 与只读 D3 已完成；当前默认简单基线为 fixed `α=0.75`，现有特征不支持新的 harm-aware formal；
 3. delay 非特权 32-sequence formal 已完成：可辨识但 persistence-specific 行为值未建立，暂不在相同数据上继续调 gate；
-4. CoG P3a/P3b 表示审计已完成；100 Hz S100 full 未超过 C10 或 zero response，因此 CoG V3/history 暂停。下一候选是 matrix rollout-disagreement harm feasibility，只允许先补只读日志并用未暴露开发数据检验；
-5. 只有显式 context 与行为选择器都稳定后，才比较 `context only / episode-local TTT only / context + TTT / true-context`；
-6. 最后开展 `z_shape + z_physics` 的 T/L/Z 因子化实验，再迁移到完整视觉 AdaJEPA 或 deformable 环境。
+4. CoG P3a/P3b 表示审计已完成；100 Hz S100 full 未超过 C10 或 zero response，因此 CoG V3/history 暂停；
+5. D4 完整轨迹分歧 development 已完成，预注册风险方向未成立，不得在同一数据上翻转方向、调阈值或挑次要分数后直接启动 formal；
+6. 若用户决定继续，最小下一步是 E2 在线物理参数修正：E1 后验只作为初始先验，再用 E2 前 1–2 步真实运动更新；必须同时包含 factor 持续和改变，并保持总动作预算一致。先检验简单贝叶斯充分统计量，不直接加入 TTT；
+7. 只有上述简单在线修正建立闭环价值后，才比较 `context only / episode-local TTT only / context + TTT / true-context`；最后再开展 `z_shape + z_physics` 因子化和视觉迁移。
 
 具体假设、拆分、端点、对照、资源估计和停止纪律见当前后续实验计划；本 Prompt 不替代每项实验在结果产生前冻结的独立合同。
 

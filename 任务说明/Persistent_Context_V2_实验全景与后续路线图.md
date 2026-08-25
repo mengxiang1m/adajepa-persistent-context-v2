@@ -463,6 +463,10 @@ External T-F0 无需 refit 即改善 `11.10%`，相对 fixed `.75` 的均值优�
 
 当前 96 条只作为 outcome-exposed exploration。只读 D3 用 leave-one-shape-pair-out/leave-one-factor-out 检查 F0/F1/F2：现有特征几乎总是继续使用 context。Fixed `.75` 的最佳 veto 只减少 1 条 harm 且降低 mean；external F0 的最佳 veto 也只减少 1 条 harm，mean 损失 CI 排除 0。因此不授权新的 harm-aware formal，也不在同一批 outcome 上调阈值或扩大模型。
 
+### 已完成：完整预测轨迹分歧 D4
+
+D4 使用 96 条未暴露 development sequence，在任何 E2 执行前保存默认模型/上下文模型对 population/context 两套命令的四条完整 latent 轨迹。Fixed `.75` 平均改善 `11.90%`，区间 `[0.2191,0.4110]`，但仍有 24/96 条受损。预注册风险分数的 harm AUC 为 `0.3906`、区间 `[0.2664,0.5223]`；分歧越大时平均收益反而越高。低容量 ridge 在 96 条中选择 context 95 次，受损率仍为 `25%`。原始轨迹、状态、指标和统计独立审计误差均为 0。因此 rollout disagreement 不能按冻结方向作为风险 veto，也不在同一数据上翻转方向或选择次要分数后启动 formal。
+
 ### 已完成：Delay 非特权 estimator development smoke
 
 Estimator 只用过去 E1 command 和 agent position/velocity，通过 PD 反演与五档 FIFO likelihood 得到 posterior。既有 Stage 0 32 条开发轨迹与 4 条全新作者片段上的 MAP 分别为 `32/32`、`4/4`；E2 零当前 evidence、model identity 和独立重算均通过。
@@ -478,6 +482,10 @@ Estimator 只用过去 E1 command 和 agent position/velocity，通过 PD 反演
 ### 已完成：扩大 rotation×gain matrix 的独立复验
 
 本次已新增三个不重叠批次，每批 32 sequences。无条件 context 在 train/dev/formal 分别改善 `11.29%/11.52%/11.29%`；factor 异质性总体存在，但旧批次负向的 `(-10°,1.18)` 在新 formal 变为小幅正向且组内 2 正 2 负，进一步证明 gate 需要场景交互信息，而不能把一次 factor 分组符号当永久规则。
+
+### 后续候选：E2 在线贝叶斯修正
+
+如果用户决定继续，先检验简单充分统计量：E2 开始时把 E1 后验作为物理参数先验，再根据前 1–2 步 command、位置和速度更新。实验必须同时包含 E1/E2 factor 持续和 factor 改变，所有方法共享总动作预算。主比较是“旧 context 全程固定”与“旧 context 初始化后在线修正”；population、current-only 和 true-current-factor 作为对照。该实验尚未冻结或执行。
 
 ### 后续步骤：显式 context + episode-local adaptation
 
@@ -508,8 +516,8 @@ Rotation×gain 物理 context 的 state-based 跨 shape 迁移已经建立。进
 2. **Delay 非特权 estimator formal（已完成）**：可辨识性成立，persistence-specific 行为值未建立；high-delay gate 的收益不依赖持续性，暂不训练 learned gate；
 3. **CoG P3a 表示审计（已完成）**：字段可得，但控制边界 Markov/contact 拼接未修正 v1；
 4. **CoG P3b event-level contact-response audit（已完成）**：100 Hz impulse 有局部信息，完整表示未超过 10 Hz/zero；CoG 路线暂停；
-5. **Matrix rollout-disagreement harm feasibility（正在执行）**：合同、主风险分数、采集/分析/独立审计代码已冻结；下一步生成未暴露 selection，完成单 GPU smoke 和 96 条 development sequence；
-6. **显式低维 context + episode-local adaptation 组合**；
+5. **Matrix rollout-disagreement harm feasibility（已完成）**：fixed `.75` 平均价值再次成立，但预注册 harm AUC 为 `0.391`，ridge 退化为 95/96 条使用 context；不启动当前风险 veto formal；
+6. **E2 在线贝叶斯修正（待用户决定）**：以 E1 后验初始化，再用 E2 前 1–2 步反馈更新，同时检验 factor 持续和改变；
 7. **T/L/Z 跨 shape factorization**；
 8. **迁移到完整视觉 AdaJEPA context-conditioned predictor**。
 
@@ -539,6 +547,7 @@ Rotation×gain 物理 context 的 state-based 跨 shape 迁移已经建立。进
 - Matrix F0 soft-policy 前瞻正式结果：[`persistent_context_v2_matrix_f0_soft_policy_formal_results_zh.md`](../docs/research/persistent_context_v2_matrix_f0_soft_policy_formal_results_zh.md)
 - 跨 Shape Matrix History 前瞻正式结果：[`persistent_context_v2_cross_shape_matrix_history_formal_results_zh.md`](../docs/research/persistent_context_v2_cross_shape_matrix_history_formal_results_zh.md)
 - 跨 Shape Harm Attribution D3：[`persistent_context_v2_cross_shape_harm_d3_results_zh.md`](../docs/research/persistent_context_v2_cross_shape_harm_d3_results_zh.md)
+- 完整预测轨迹分歧 D4：[`persistent_context_v2_matrix_rollout_disagreement_d4_results_zh.md`](../docs/research/persistent_context_v2_matrix_rollout_disagreement_d4_results_zh.md)
 
 ### 前置跨任务 Phase A–H 最终报告（远端）
 
@@ -569,6 +578,8 @@ research/persistent_context_v2/pushobj_cog_predictor.py
 research/persistent_context_v2/functional_shadow_gate.py
 research/persistent_context_v2/pushobj_matrix_gate_data.py
 research/persistent_context_v2/matrix_learned_gate.py
+research/persistent_context_v2/matrix_rollout_disagreement_d4.py
+scripts/audit_persistent_context_v2_matrix_rollout_disagreement_d4.py
 research/persistent_factor/benchmark.py
 planning/sequence_manifest.py
 planning/continual_state.py
