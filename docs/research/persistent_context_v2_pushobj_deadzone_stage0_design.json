@@ -1,0 +1,70 @@
+{
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 900101,
+  "contract_id": "persistent-context-v2-pushobj-radial-deadzone-stage0-v1",
+  "deadline_actions": 10,
+  "development_factors": [
+    0.025,
+    0.075,
+    0.125,
+    0.175
+  ],
+  "formal_factors": [
+    0.04,
+    0.08,
+    0.12,
+    0.16
+  ],
+  "main_metric": "pose_auc10_to_waypoint",
+  "minimum_nominal_block_displacement_at_10": 10.0,
+  "planner": {
+    "model_horizon": 2,
+    "num_samples": 200,
+    "opt_steps": 10,
+    "topk": 30
+  },
+  "population_prior": 0.1,
+  "segment_indices": [
+    142,
+    343,
+    32,
+    428,
+    199,
+    380,
+    148,
+    429,
+    292,
+    407,
+    385,
+    376,
+    35,
+    149,
+    413,
+    321,
+    360,
+    347,
+    398,
+    357,
+    179,
+    18,
+    152,
+    163,
+    330,
+    193,
+    294,
+    322,
+    359,
+    138,
+    336,
+    469
+  ],
+  "selection_seed": 900000,
+  "train_support": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.2
+  ],
+  "transform": "radial_soft_threshold"
+}

@@ -1,0 +1,21 @@
+{
+  "contract_id": "persistent-context-v2-pushobj-discrete-delay-history-stage1-formal-v1",
+  "data_sha256": "f08486da48f7a6961e3d0035b48d9cd13515c0322bbacaf9dd9f973bf7bad624",
+  "eligible_count_before_selection": 106,
+  "exclusion_rule": "exclude_every_top_level_segment_index_in_existing_repro_outputs_jsonl_then_require_nominal_step10_block_displacement_ge_10",
+  "formal_segment_indices_by_sequence_e1_e2": [
+    [301, 6], [481, 188], [462, 316], [48, 435],
+    [60, 221], [364, 70], [352, 374], [401, 114],
+    [90, 33], [63, 262], [207, 213], [222, 489],
+    [255, 310], [158, 21], [203, 56], [414, 26],
+    [406, 118], [452, 223], [317, 55], [542, 76],
+    [980, 72], [160, 410], [334, 268], [318, 297],
+    [217, 471], [3, 143], [415, 109], [186, 45],
+    [498, 440], [44, 8], [486, 437], [350, 281]
+  ],
+  "reserve_segment_indices": [250, 155, 40, 480, 136, 239, 43, 323, 100, 391, 488, 459, 447, 265, 687, 405],
+  "selection_seed": 1090000,
+  "smoke_segment_indices_by_sequence_e1_e2": [[99, 242], [377, 225], [445, 251], [23, 185]],
+  "unused_eligible_segment_indices": [381, 115, 438, 358, 228, 494, 443, 112, 353, 176, 356, 420, 12, 236, 354, 101, 52, 127],
+  "used_unique_segment_indices_before_selection": 650
+}

@@ -1,0 +1,34 @@
+{
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 930301,
+  "conditions": [
+    "persistent",
+    "no_persistence"
+  ],
+  "contract_id": "persistent-context-v2-pushobj-radial-deadzone-history-stage1-v1",
+  "donor_seed": 930200,
+  "episodes_per_sequence": 4,
+  "estimator": {
+    "active_norm_min": 0.0001,
+    "clip_max": 0.25,
+    "type": "censored-radial-deadzone-mle"
+  },
+  "factor_schedule_seed": 930100,
+  "formal_factors": [
+    0.04,
+    0.08,
+    0.12,
+    0.16
+  ],
+  "main_metric": "later_E2_E4_mean_pose_auc10_to_waypoint",
+  "planner": {
+    "deadline_actions": 10,
+    "model_horizon": 2,
+    "num_samples": 200,
+    "opt_steps": 10,
+    "topk": 30
+  },
+  "population_prior": 0.1,
+  "segment_selection_seed": 930000,
+  "sequences_per_condition": 32
+}
