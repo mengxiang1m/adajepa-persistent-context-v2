@@ -49,7 +49,7 @@ from research.persistent_context_v2.pushobj_rotation_stage0 import (
 CONTRACT_ID = "persistent-context-v2-matrix-rollout-disagreement-d4-development-v1"
 EXPECTED_DESIGN_SHA256 = "40f36841e9665d80d4ed2ae9a7767d21eb611d8415297a54e96c5caac46823c2"
 EXPECTED_CONTRACT_SHA256 = "930ead1aac500e21a02ce32cf8e862616cefa31f3c0cf7cb6e13d9860b8b0c1e"
-EXPECTED_SELECTION_SHA256 = "TO_BE_FROZEN"
+EXPECTED_SELECTION_SHA256 = "208cd91e4a68af891beddf8465f73ceb048cfca60eb1c9244b06228659da4005"
 
 
 def full_rng_digest() -> str:
