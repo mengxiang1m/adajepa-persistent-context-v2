@@ -1,7 +1,7 @@
 # Persistent Context V2 后续实验计划
 
-日期：2026-08-24
-状态：P0、P1-D0/D1/D2/V2/XShape/D3、P2 delay formal、P3a 与 P3b CoG 表示审计已完成；CoG predictor/history 继续暂停，下一候选回到 matrix scene-level harm 的 rollout-disagreement feasibility
+日期：2026-08-25
+状态：P0、P1-D0/D1/D2/V2/XShape/D3、P2 delay formal、P3a 与 P3b CoG 表示审计已完成；D4 合同、采集器、分析器和独立审计器已冻结，未暴露 selection 与 GPU smoke 尚未完成
 
 ## 1. 计划依据
 
@@ -38,7 +38,7 @@
 - 显式 context 与 episode-local TTT 的互补性；
 - `z_shape + z_physics` 在 T/L/Z 或视觉 AdaJEPA 中的因果链。
 
-因此下一步不直接训练更大的 memory/Transformer，也不回到无条件权重持续。P2 delay 与 P3a/P3b CoG 均已给出边界。当前应把资源放回已建立闭环价值的 matrix context，优先补 population/context 两套 predicted rollout 的只读日志，再用未暴露开发场景检验 rollout disagreement 是否能解释跨-shape 约 `28%` 的 harm。该候选尚未冻结，不直接进入新 formal。
+因此下一步不直接训练更大的 memory/Transformer，也不回到无条件权重持续。P2 delay 与 P3a/P3b CoG 均已给出边界。D4 已冻结为前瞻开发实验：先在未暴露场景保存 population/context 两套完整 latent rollout，再检验分歧能否给跨-shape harm 排序。D4 不是 formal，也不验证在线 gate。
 
 ## 2. 总体依赖顺序
 
@@ -64,7 +64,7 @@ P3a CoG Markov/contact-state 表示审计（已完成；粗粒度拼接未修正
   ↓
 P3b event-level contact-response audit（已完成；100 Hz 表示未超过 10 Hz/zero）
   ↓
-P1-D4 matrix rollout-disagreement harm feasibility（下一候选；待冻结）
+P1-D4 matrix rollout-disagreement harm feasibility（合同与代码已冻结；待 selection、smoke 和 development）
   ↓
 P4 显式 context + episode-local adaptation
   ↓
@@ -143,7 +143,15 @@ D2 的 learned soft policy 相对 fixed `α=0.75` 三轮 mean 方向一致，但
 
 D3 未找到能转化为行为优势的稳定风险信号。Fixed `.75` 的最佳 veto 仅少 1 条 harm，却损失 mean delta `0.0091`；external F0 的最佳 veto 同样少 1 条 harm，但 mean 损失 `0.0224`，CI `[-0.0451,-0.0049]`。所以不启动 harm-aware formal、不在当前 96 条调阈值，保留 fixed `.75` 为默认并转向 P2 delay。完整结果见 [`../docs/research/persistent_context_v2_cross_shape_harm_d3_results_zh.md`](../docs/research/persistent_context_v2_cross_shape_harm_d3_results_zh.md)。
 
-### 4.8 放弃当前版本：task-interaction hard-gate V2
+### 4.8 正在执行：D4 完整预测轨迹分歧
+
+D3 只保存了四个预测目标损失，没有保存模型逐步预测的完整 latent。D4 在任何 E2 真实执行前固定生成两套命令，并保存四条完整预测轨迹：默认模型和上下文模型分别评价 population、context 命令。
+
+主风险分数固定为“context 命令在默认模型与上下文模型之间的全轨迹 RMS 分歧”，方向固定为分数越大、harm 风险越高。真实标签仍是 sequence-level `pose_auc10(population)-pose_auc10(context .75)`。主报告为 harm ROC AUC、sequence bootstrap 区间、与负收益的相关性和风险四分位；低容量 ridge 只作次要机制分析。
+
+数据继续使用作者 seed-42 的六个非 T shape 池。新 selection 排除既有跨 shape smoke、formal、reserve 的全部 segment hash 和 `ep_idx:offset`，计划使用 6 条 smoke 和 `6 shape pairs × 8 factors × 2 replicates=96` 条 development sequence。抽样不读取新 E2 outcome。合同见 [`../docs/research/persistent_context_v2_matrix_rollout_disagreement_d4_contract_zh.md`](../docs/research/persistent_context_v2_matrix_rollout_disagreement_d4_contract_zh.md)。当前合同、设计、采集器、分析器、独立审计器和 CPU 测试已提交；selection、GPU smoke 与 development 结果尚未产生。
+
+### 4.9 放弃当前版本：task-interaction hard-gate V2
 
 #### 原拟特征
 
@@ -305,4 +313,4 @@ Deformable 环境仍受 Prompt 第 8 节的环境重构要求约束，不与 T/L
 
 ## 10. 当前建议
 
-P0、P1-D0/D1/D2/V2/XShape/D3、P2 delay formal 与 P3a/P3b 已完成。跨 shape matrix correct history 的父命题成立；delay persistence-specific 闭环价值未建立；CoG 的 10 Hz 拼接和 100 Hz event ridge 均未形成可部署 predictor。下一候选收缩为 matrix rollout-disagreement harm feasibility：先补只读 predicted-rollout 日志和 identity test，再冻结未暴露开发拆分。CoG V3/history、episode-local adaptation 和视觉扩张继续暂停。
+P0、P1-D0/D1/D2/V2/XShape/D3、P2 delay formal 与 P3a/P3b 已完成。跨 shape matrix correct history 的父命题成立；delay persistence-specific 闭环价值未建立；CoG 的 10 Hz 拼接和 100 Hz event ridge 均未形成可部署 predictor。D4 matrix rollout-disagreement 开发合同和代码已冻结，下一步是生成未暴露 selection、通过单 GPU smoke，再收集 96 条 development sequence。CoG V3/history、episode-local adaptation 和视觉扩张继续暂停。

@@ -508,7 +508,7 @@ Rotation×gain 物理 context 的 state-based 跨 shape 迁移已经建立。进
 2. **Delay 非特权 estimator formal（已完成）**：可辨识性成立，persistence-specific 行为值未建立；high-delay gate 的收益不依赖持续性，暂不训练 learned gate；
 3. **CoG P3a 表示审计（已完成）**：字段可得，但控制边界 Markov/contact 拼接未修正 v1；
 4. **CoG P3b event-level contact-response audit（已完成）**：100 Hz impulse 有局部信息，完整表示未超过 10 Hz/zero；CoG 路线暂停；
-5. **Matrix rollout-disagreement harm feasibility（下一候选）**：补 population/context 两套 predicted rollout 的只读日志，在未暴露开发场景检验负向尾部；
+5. **Matrix rollout-disagreement harm feasibility（正在执行）**：合同、主风险分数、采集/分析/独立审计代码已冻结；下一步生成未暴露 selection，完成单 GPU smoke 和 96 条 development sequence；
 6. **显式低维 context + episode-local adaptation 组合**；
 7. **T/L/Z 跨 shape factorization**；
 8. **迁移到完整视觉 AdaJEPA context-conditioned predictor**。
