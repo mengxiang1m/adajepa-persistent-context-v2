@@ -1,0 +1,26 @@
+{
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 1070301,
+  "contract_id": "persistent-context-v2-pushobj-horizontal-cog-simulator-oracle-stage0-v1",
+  "development_cog_x_factors": [-22.5, -7.5, 7.5, 22.5],
+  "main_metric": "pose_auc10_to_waypoint",
+  "minimum_nominal_block_displacement_at_10": 10.0,
+  "nominal_cog_y": 45.0,
+  "planner": {
+    "initial_sigma": 0.2,
+    "num_samples": 128,
+    "opt_steps": 5,
+    "topk": 16,
+    "type": "paired_ground_truth_physics_cem"
+  },
+  "population_prior_cog_x": 0.0,
+  "segment_indices": [
+    442, 307, 436, 216, 421, 446, 194, 458,
+    137, 200, 464, 24, 329, 10, 113, 210,
+    373, 363, 337, 361, 491, 140, 267, 277,
+    291, 483, 69, 448, 439, 195, 226, 344
+  ],
+  "selection_seed": 1070000,
+  "train_cog_x_support": [-30.0, -15.0, 0.0, 15.0, 30.0],
+  "window_actions": 10
+}

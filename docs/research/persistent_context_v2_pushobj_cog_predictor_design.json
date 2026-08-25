@@ -1,0 +1,46 @@
+{
+  "contract_id": "persistent-context-v2-pushobj-cog-film-residual-predictor-v1",
+  "selection_seed": 1170000,
+  "train_segment_indices": [67, 221, 261, 353, 208, 437, 370, 265, 288, 316, 213, 158, 438, 55, 6, 16, 354, 48, 202, 100, 80, 462, 212, 8, 174, 499, 468, 116, 165, 489, 323, 150, 380, 89, 3, 23, 127, 71, 19, 156, 251, 339, 234, 488, 162, 408, 355, 222, 31, 98, 218, 495, 99, 157, 188, 258, 101, 317, 304, 262, 107, 452, 136, 249, 65, 383, 119, 377, 245, 283, 306, 285, 60, 163, 115, 143, 223, 26, 352, 7, 56, 173, 43, 59, 141, 398, 381, 239, 410, 358, 414, 76, 397, 88, 402, 409],
+  "dev_segment_indices": [199, 97, 469, 58, 225, 476, 214, 433, 268, 293, 0, 73, 189, 280, 426, 160, 138, 364, 429, 179, 203, 365, 93, 185],
+  "formal_segment_indices": [274, 85, 148, 296, 259, 427, 230, 473, 235, 465, 295, 64, 326, 393, 308, 238, 455, 246, 14, 348, 463, 126, 146, 104, 390, 74, 124, 416, 292, 167, 357, 102],
+  "excluded_cog_stage0_segments": [442, 307, 436, 216, 421, 446, 194, 458, 137, 200, 464, 24, 329, 10, 113, 210, 373, 363, 337, 361, 491, 140, 267, 277, 291, 483, 69, 448, 439, 195, 226, 344],
+  "train_factors_cog_x": [-30.0, -15.0, 0.0, 15.0, 30.0],
+  "dev_factors_cog_x": [-25.0, -10.0, 10.0, 25.0],
+  "formal_factors_cog_x": [-22.5, -7.5, 7.5, 22.5],
+  "cog_y": 45.0,
+  "population_prior_cog_x": 0.0,
+  "action_count": 10,
+  "train_variants_per_segment": 16,
+  "dev_variants_per_segment": 8,
+  "action_noise_sigmas": [0.08, 0.16, 0.24, 0.32],
+  "data_seed": 1170100,
+  "model_seed": 1170200,
+  "model": {
+    "type": "single_film_nominal_trajectory_residual",
+    "hidden_dim": 256,
+    "conditioning_paths": 1,
+    "context_normalizer": 30.0,
+    "position_target_scale": 20.0,
+    "angle_target_scale": 0.3490658503988659
+  },
+  "training": {
+    "steps": 3000,
+    "batch_size": 256,
+    "learning_rate": 0.001,
+    "weight_decay": 0.00001,
+    "dev_every": 100,
+    "checkpoint_rule": "lowest held-out-factor dev trajectory MSE"
+  },
+  "formal": {
+    "pairs": 32,
+    "policies": ["population_prior_context", "true_cog_context", "simulator_oracle"],
+    "cem_samples": 128,
+    "cem_topk": 16,
+    "cem_rounds": 5,
+    "cem_initial_sigma": 0.2,
+    "primary_metric": "pose_auc10_to_nominal_step10_waypoint",
+    "bootstrap_resamples": 20000,
+    "bootstrap_seed": 1170300
+  }
+}

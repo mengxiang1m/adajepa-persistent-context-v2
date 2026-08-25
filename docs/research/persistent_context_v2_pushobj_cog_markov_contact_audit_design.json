@@ -1,0 +1,32 @@
+{
+  "contract_id": "persistent-context-v2-pushobj-cog-markov-contact-audit-v1",
+  "source_predictor_design_sha256": "e09973efeaf0bd291a35cd0f4627888aace591134e05eb0a273cf05ff1947c1f",
+  "source_predictor_checkpoint_sha256": "39bb54d90a863c012dbd05e9ea448d8e213966a1d47c5f116faebc6f0a06c403",
+  "train_segment_indices": [67, 221, 261, 353, 208, 437, 370, 265, 288, 316, 213, 158, 438, 55, 6, 16, 354, 48, 202, 100, 80, 462, 212, 8],
+  "eval_segment_indices": [199, 97, 469, 58, 225, 476, 214, 433, 268, 293, 0, 73, 189, 280, 426, 160],
+  "forbidden_formal_segment_indices": [274, 85, 148, 296, 259, 427, 230, 473, 235, 465, 295, 64, 326, 393, 308, 238, 455, 246, 14, 348, 463, 126, 146, 104, 390, 74, 124, 416, 292, 167, 357, 102],
+  "train_factors_cog_x": [-30.0, -15.0, 0.0, 15.0, 30.0],
+  "eval_factors_cog_x": [-25.0, -10.0, 10.0, 25.0],
+  "cog_y": 45.0,
+  "population_cog_x": 0.0,
+  "action_count": 10,
+  "variants_per_segment": 4,
+  "action_noise_sigmas": [0.08, 0.16, 0.24],
+  "variant_seed": 1310100,
+  "env_seed_base": 1311000,
+  "representations": ["R0_legacy", "R1_markov", "R2_nominal_agent_block_contact"],
+  "v1_error_corrections": ["C1_markov_increment", "C2_markov_contact_increment"],
+  "repair1": {
+    "reason": "pre-full-run 2+2 smoke exposed empty CV folds and the need for a direct frozen-v1 residual attribution control",
+    "smoke_contract_sha256": "473e87d446d2dddfa446d22f7dc1e76cc2a639b95ca811c7f928c3dad903857a",
+    "smoke_design_sha256": "8067516440ba2942ffba5c89f397a5ac2737a226bad04ad4aaa328518878f2f2",
+    "formal_data_read_before_repair": false
+  },
+  "ridge_alphas": [1e-6, 1e-4, 1e-2, 1.0, 100.0],
+  "group_cv_folds": 4,
+  "bootstrap_seed": 1310300,
+  "bootstrap_resamples": 20000,
+  "primary_metric": "trajectory_pose_error",
+  "position_scale": 20.0,
+  "angle_scale": 0.3490658503988659
+}

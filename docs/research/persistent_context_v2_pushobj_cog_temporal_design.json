@@ -1,0 +1,55 @@
+{
+  "contract_id": "persistent-context-v2-pushobj-cog-temporal-film-predictor-v2",
+  "parent_design_sha256": "e09973efeaf0bd291a35cd0f4627888aace591134e05eb0a273cf05ff1947c1f",
+  "train_data_sha256": {
+    "inputs": "8cd9fbabe9b596a8fabec275d5171765255fd4719d3f8d966eb9a9de80a2da43",
+    "targets": "84eced4e3dfec761c0eb399d77e18fdd525ee20f679cb36f1782669e96f8bd4e"
+  },
+  "dev_data_sha256": {
+    "inputs": "47f3773811d0ce35e273b04b61a92bded2811df0b04c5fa8d38a84e6346c2ca4",
+    "targets": "b5b2893419139252fb5a25ecb8d2647729a93216c465bf7cf4c58fd44995bd07"
+  },
+  "v1_checkpoint_sha256": "39bb54d90a863c012dbd05e9ea448d8e213966a1d47c5f116faebc6f0a06c403",
+  "formal_selection_seed": 1270000,
+  "formal_segment_indices": [187, 303, 41, 260, 479, 66, 149, 347, 478, 492, 298, 477, 54, 270, 2, 153, 264, 413, 403, 467, 312, 180, 15, 490, 302, 224, 325, 166, 95, 5, 335, 229],
+  "formal_factors_cog_x": [-22.5, -7.5, 7.5, 22.5],
+  "factor_assignment": "eight consecutive pairs per factor",
+  "population_prior_cog_x": 0.0,
+  "cog_y": 45.0,
+  "model": {
+    "type": "causal_gru_single_film_nominal_trajectory_residual",
+    "encoded_state_dim": 8,
+    "step_input": "nominal_state_t + nominal_state_t_plus_1 + action_t",
+    "step_input_dim": 18,
+    "step_embedding_dim": 64,
+    "gru_hidden_dim": 128,
+    "gru_layers": 1,
+    "bidirectional": false,
+    "conditioning_paths": 1,
+    "zero_context_identity": "shared_head_film_context_minus_shared_head_film_zero"
+  },
+  "training": {
+    "seed": 1270200,
+    "steps": 3000,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0005,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 1.0,
+    "loss": "mean_squared_error_all_ten_pose_residuals",
+    "dev_every": 100,
+    "checkpoint_rule": "lowest frozen held-out-factor dev trajectory MSE"
+  },
+  "formal": {
+    "pairs": 32,
+    "policies": ["population_prior_context", "v1_true_cog_context", "v2_temporal_true_cog_context", "simulator_oracle"],
+    "cem_samples": 128,
+    "cem_topk": 16,
+    "cem_rounds": 5,
+    "cem_initial_sigma": 0.2,
+    "action_count": 10,
+    "primary_metric": "pose_auc10_to_nominal_step10_waypoint",
+    "bootstrap_resamples": 20000,
+    "bootstrap_seed": 1270300
+  }
+}
