@@ -1,0 +1,60 @@
+{
+  "contract_id": "persistent-context-v2-functional-shadow-gate-v1",
+  "evaluation_type": "retrospective_paired_shadow_on_frozen_raw",
+  "raw_inputs": {
+    "deadzone_stage1_persistent": {
+      "path": "repro_outputs/persistent_context_v2_pushobj_deadzone_stage1/persistent_raw.jsonl",
+      "sha256": "05a64892344d3a7f5f2b8f1351716ebb2039d7fd3177cfed63d7d7a5dd7024c4"
+    },
+    "delay_stage0": {
+      "path": "repro_outputs/persistent_context_v2_pushobj_delay_stage0/raw.jsonl",
+      "sha256": "02d27c5fe51d4932dd7d1f8ce67d893be0fbf55b6e3cb77255915d3eec43368d"
+    },
+    "matrix_stage1_persistent": {
+      "path": "repro_outputs/persistent_context_v2_pushobj_matrix_stage1/persistent_raw.jsonl",
+      "sha256": "47f6afd6b0b5d3739e126f9ef697d9cee739de82d93659d0c1ccb7a8532d5868"
+    }
+  },
+  "decision_information": "context estimate and fixed population prior only; no planner loss, true behavior, goal, segment, seed, or outcome",
+  "rules": {
+    "deadzone": {
+      "context_source": "correct_history censored-MLE estimate",
+      "population_prior": 0.1,
+      "use_context_if": "estimated_deadzone > 0.1"
+    },
+    "delay": {
+      "context_source": "true delay for functional-ceiling only",
+      "population_prior": 2,
+      "use_context_if": "delay_steps > 2",
+      "deployability": "not deployable until a non-privileged delay estimator exists"
+    },
+    "matrix": {
+      "context_source": "correct_history Bayesian posterior mean matrix",
+      "population_prior_gain": 0.9327804920294028,
+      "large_rotation_cutoff_degrees": 15.0,
+      "use_context_if": "estimated_gain < 0.9327804920294028 OR abs(estimated_rotation_degrees) >= 15"
+    }
+  },
+  "units": {
+    "deadzone": "32 sequences; mean E2-E4 pose_auc10 per sequence",
+    "delay": "32 paired scenarios",
+    "matrix": "32 sequences; E2 pose_auc10"
+  },
+  "policies": ["population", "always_context", "functional_gate", "inverted_gate", "best_of_two_behavior_ceiling"],
+  "primary_metric": "pose_auc10; lower is better",
+  "reported_fields": [
+    "policy means",
+    "population minus policy mean delta",
+    "relative improvement",
+    "paired bootstrap 95% CI",
+    "positive tie negative fractions",
+    "context selection rate",
+    "harm fraction relative to population",
+    "functional gate improvement over always context",
+    "best-of-two opportunity recovery",
+    "factor-level decisions and effects"
+  ],
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 1370300,
+  "fixed_effect_threshold": null
+}

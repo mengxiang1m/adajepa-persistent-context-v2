@@ -1,0 +1,56 @@
+{
+  "contract_id": "persistent-context-v2-matrix-learned-surrogate-gate-v1",
+  "evaluation_type": "prospective_split_paired_shadow",
+  "selection_seed": 1080000,
+  "segment_pool": {
+    "range": [500, 1000],
+    "minimum_nominal_block_displacement_at_10": 10.0,
+    "excluded_matrix_stage1_segments": [507, 822, 885, 699, 706, 790, 833, 631, 746, 690, 531, 739, 788, 875, 593, 506, 503, 511, 714, 973, 558, 583, 520, 584, 854, 697, 700, 600, 981, 750, 856, 767, 549, 807, 781, 762, 537, 979, 512, 649, 834, 686, 570, 592, 878, 821, 972, 534, 712, 702, 768, 855, 840, 800, 950, 747, 742, 763, 585, 587, 594, 602, 930, 901]
+  },
+  "splits": {
+    "train": {
+      "segment_indices": [873, 658, 892, 504, 783, 867, 500, 632, 659, 539, 707, 560, 665, 620, 780, 922, 954, 736, 653, 523, 882, 811, 515, 579, 545, 869, 635, 784, 923, 624, 759, 621, 718, 818, 708, 929, 944, 912, 544, 656, 721, 993, 536, 791, 872, 932, 851, 829, 622, 863, 974, 678, 943, 758, 859, 890, 792, 573, 629, 717, 988, 839, 925, 933],
+      "env_seed_base": 1090000,
+      "cem_seed_base": 1091000
+    },
+    "dev": {
+      "segment_indices": [501, 654, 899, 610, 578, 753, 817, 846, 909, 640, 844, 704, 799, 729, 716, 612, 638, 857, 805, 644, 540, 734, 935, 572, 705, 569, 907, 826, 574, 864, 880, 670, 852, 626, 897, 968, 664, 553, 786, 860, 728, 530, 967, 744, 745, 756, 795, 881, 806, 732, 599, 893, 884, 961, 883, 681, 603, 614, 976, 903, 562, 946, 816, 685],
+      "env_seed_base": 1100000,
+      "cem_seed_base": 1101000
+    },
+    "formal": {
+      "segment_indices": [582, 743, 793, 722, 958, 748, 966, 703, 970, 902, 891, 695, 900, 588, 832, 628, 687, 568, 868, 917, 615, 920, 870, 876, 551, 627, 886, 509, 969, 804, 865, 776, 849, 913, 765, 710, 810, 774, 936, 955, 785, 557, 730, 836, 752, 984, 938, 571, 625, 927, 667, 948, 650, 952, 749, 924, 606, 760, 522, 651, 998, 672, 775, 887],
+      "env_seed_base": 1110000,
+      "cem_seed_base": 1111000
+    }
+  },
+  "sequences_per_split": 32,
+  "episodes_per_sequence": 2,
+  "formal_factors": [
+    {"rotation_degrees": -25.0, "gain": 0.82},
+    {"rotation_degrees": -25.0, "gain": 1.18},
+    {"rotation_degrees": -10.0, "gain": 0.82},
+    {"rotation_degrees": -10.0, "gain": 1.18},
+    {"rotation_degrees": 10.0, "gain": 0.82},
+    {"rotation_degrees": 10.0, "gain": 1.18},
+    {"rotation_degrees": 25.0, "gain": 0.82},
+    {"rotation_degrees": 25.0, "gain": 1.18}
+  ],
+  "factor_schedule": "sequence_id modulo 8; four sequences per factor in every split",
+  "planner": {"deadline_actions": 10, "model_horizon": 2, "num_samples": 200, "topk": 30, "opt_steps": 10},
+  "gate_features": ["posterior_gain", "posterior_rotation_degrees"],
+  "feature_basis": ["1", "normalized_gain", "normalized_rotation", "normalized_gain_squared", "gain_rotation_interaction", "normalized_rotation_squared"],
+  "gain_center": 0.9327804920294028,
+  "gain_scale": 0.25,
+  "rotation_scale_degrees": 30.0,
+  "ridge_alphas": [0.0, 0.01, 0.1, 1.0, 10.0],
+  "alpha_selection": "maximize dev paired behavior delta of predicted_delta>0 gate; ties choose larger alpha",
+  "final_fit": "refit selected alpha on train plus dev labels; evaluate formal once",
+  "decision_rule": "use context iff predicted population_minus_context pose_auc10 delta > 0",
+  "functional_control_rule": "use context iff estimated_gain < population_prior_gain OR abs(estimated_rotation_degrees) >= 15",
+  "random_control_seed": 1120000,
+  "bootstrap_seed": 1121000,
+  "bootstrap_resamples": 20000,
+  "primary_metric": "formal E2 pose_auc10 population_minus_learned_gate",
+  "no_fixed_effect_threshold": true
+}

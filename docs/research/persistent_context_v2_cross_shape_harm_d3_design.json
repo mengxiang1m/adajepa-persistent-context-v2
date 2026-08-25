@@ -1,0 +1,22 @@
+{
+  "analysis_id": "persistent-context-v2-cross-shape-harm-d3-exploratory-v1",
+  "evidence_level": "outcome_exposed_read_only_exploration_not_new_formal",
+  "input_raw": "repro_outputs/persistent_context_v2_cross_shape_matrix_history_formal_v1/formal/raw.jsonl",
+  "input_raw_sha256": "ea74e8500eb37ce27a90ce110a17697672f13671aab4322aed1155d200a4a728",
+  "input_summary_sha256": "81d6c65b4b2e54953f04538fbf5d118a388811868306f18ea58412a4211af074",
+  "cross_shape_design": "docs/research/persistent_context_v2_cross_shape_matrix_history_design.json",
+  "checkpoint_sha256": "6a0a75a94eefa4ca1e261cd1010c2c886e1465ce77035ec8a802eb75db3ead95",
+  "targets": ["fixed_alpha_0.75", "external_T_F0"],
+  "feature_sets": {"F0_factor_only": 6, "F1_geometry_action": 14, "F2_model_interaction": 18},
+  "feature_names": ["intercept", "normalized_gain", "normalized_rotation", "normalized_gain_squared", "gain_rotation_interaction", "normalized_rotation_squared", "agent_to_block_distance", "block_to_goal_distance", "agent_block_goal_alignment", "absolute_block_goal_angle_error", "command_rms_disagreement", "first_action_cosine_distance", "log_mean_action_norm_ratio", "log_action_variation_ratio", "prior_preference_for_prior_action", "context_preference_for_context_action", "context_sensitivity_of_prior_action", "context_sensitivity_of_context_action"],
+  "ridge_alphas": [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0],
+  "outer_evaluations": ["leave_one_shape_pair_out", "leave_one_factor_out"],
+  "inner_selection": "within outer-train, leave one remaining group out; maximize realized safety-veto mean delta; exact ties choose larger ridge",
+  "label": "population_pose_auc10 - target_policy_pose_auc10",
+  "decision_rule": "use target policy iff out-of-group predicted benefit > 0, otherwise population",
+  "privileged_diagnostics_not_features": ["posterior_gain_error", "posterior_rotation_error", "true_factor"],
+  "bootstrap_seed": 1201000,
+  "bootstrap_resamples": 20000,
+  "no_new_environment_outcome": true,
+  "no_fixed_effect_threshold": true
+}

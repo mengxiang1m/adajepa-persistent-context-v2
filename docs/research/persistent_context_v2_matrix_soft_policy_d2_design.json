@@ -1,0 +1,22 @@
+{
+  "design_id": "persistent-context-v2-matrix-soft-policy-d2-exploratory-v1",
+  "evidence_level": "exploratory_reuse_of_old_d0_features_and_d1_outcomes_not_new_formal",
+  "alphas": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "ridge_alphas": [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0],
+  "bootstrap_seed": 1205001,
+  "bootstrap_resamples": 20000,
+  "feature_sets": {
+    "F0_factor_only": 6,
+    "F2_task_interaction": 18
+  },
+  "rotations": [
+    ["train", "dev", "formal"],
+    ["dev", "formal", "train"],
+    ["formal", "train", "dev"]
+  ],
+  "primary_fixed_alpha": 0.75,
+  "secondary_fixed_alpha": 0.5,
+  "dose_basis": ["alpha_times_x", "alpha_times_one_minus_alpha_times_x"],
+  "tie_break": "smaller_context_alpha",
+  "ridge_tie_break": "larger_ridge_alpha"
+}

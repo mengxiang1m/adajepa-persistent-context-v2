@@ -1,0 +1,15 @@
+{
+  "design_id": "persistent-context-v2-matrix-soft-context-d1-exploratory-v1",
+  "evidence_level": "exploratory_reuse_of_old_sequences_not_new_formal",
+  "alphas": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "blend": "M_alpha=(1-alpha)*M_prior+alpha*M_posterior",
+  "primary_metric": "E2_pose_auc10_to_waypoint",
+  "bootstrap_seed": 1204001,
+  "bootstrap_resamples": 20000,
+  "splits": ["train", "dev", "formal"],
+  "expected_sequences_per_split": 32,
+  "endpoint_identity_tolerance": 1e-6,
+  "endpoint_identity_required": true,
+  "posthoc_best_fixed_alpha_is_exploratory_ceiling": true,
+  "posthoc_per_sequence_best_alpha_is_exploratory_ceiling": true
+}
