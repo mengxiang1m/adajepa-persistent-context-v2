@@ -1,0 +1,32 @@
+{
+  "decision": "NO_GO_POINTMAZE_ACTION_CALIBRATION_TASK",
+  "formal_contract_authorized": false,
+  "stage": "real_pointmaze_stage0_task_qualification",
+  "primary_metric": "auc_k25",
+  "n_independent_pairs": 20,
+  "population_prior_mean": 2.844371700286865,
+  "true_context_mean": 2.867248314619064,
+  "population_minus_true_mean": -0.022876614332199098,
+  "population_minus_true_ci95": [
+    -0.06999861374497414,
+    0.01970627650618549
+  ],
+  "relative_improvement": -0.008042765412794646,
+  "direction_fraction": 0.55,
+  "required_relative_improvement": 0.25,
+  "mean_abs_command_difference": 0.19028354583629697,
+  "gates": {
+    "identity_complete": true,
+    "paired_nuisance_exact": true,
+    "context_changes_all_action_plans": true,
+    "true_context_relative_improvement_at_least_25pct": false,
+    "true_context_paired_ci_positive": false
+  },
+  "downstream_formal_matrix_executed": false,
+  "stop_reason": "The directly observed true factor did not improve the preregistered early task cost, so history/RLS controls have no behavior gap to recover.",
+  "artifact_hashes": {
+    "released_checkpoint_sha256": "df2caeb62f6fc8d67b58cab43dcbbbba7d4821226744613f52137b7c27c25528",
+    "film_adapter_sha256": "18d17e934838a65f2af0b6d0a8d502297c29cefb255a41a41499fe15f1ac3708",
+    "dev_raw_sha256": "d2485417c7295886cbba0cc584867d58e15f59af40f84125670b5e487d6d5a16"
+  }
+}

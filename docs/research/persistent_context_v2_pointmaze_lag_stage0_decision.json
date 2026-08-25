@@ -1,0 +1,34 @@
+{
+  "decision": "NO_GO_POINTMAZE_ACTUATOR_LAG_TASK",
+  "contract_id": "persistent-context-v2-pointmaze-actuator-lag-stage0-v1",
+  "contract_sha256": "ff173c47bf78746b01adce8dea0779e526ca548522823be94f4aafe75c45de2f",
+  "candidate_decisions": {
+    "A_hard_goal": {
+      "decision": "NO_GO",
+      "primary_metric": "auc_k25",
+      "n_pairs": 32,
+      "population_mean": 2.559963960200548,
+      "true_context_mean": 2.622738406062126,
+      "population_minus_true_mean": -0.06277444586157799,
+      "ci95": [-0.16255566803738475, 0.016139051504433153],
+      "relative_improvement": -0.02452161313109276,
+      "direction_fraction": 0.5,
+      "raw_sha256": "3da2629aad3a427576dd61a41480c9f54108179ce2cc22db6f446e6897a66ff8"
+    },
+    "B_local_waypoint": {
+      "decision": "NO_GO",
+      "primary_metric": "auc_k10",
+      "n_pairs": 32,
+      "population_mean": 1.0462798941880465,
+      "true_context_mean": 1.0502589046955109,
+      "population_minus_true_mean": -0.003979010507464409,
+      "ci95": [-0.01535126706585288, 0.007995709218084797],
+      "relative_improvement": -0.0038030077129144056,
+      "direction_fraction": 0.375,
+      "raw_sha256": "2d1dbbfec2fd09592d9c44f88a6bf4a207d2682575b47f9678eec0927cdd402b"
+    }
+  },
+  "formal_history_contract_authorized": false,
+  "history_rls_executed": false,
+  "stop_reason": "Both preregistered true-factor behavior upper-bound candidates failed."
+}

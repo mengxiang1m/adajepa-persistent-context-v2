@@ -1,0 +1,61 @@
+{
+  "candidate_order": ["A_released", "B_early_contact"],
+  "candidates": {
+    "A_released": {
+      "primary_metric": "pose_auc25",
+      "selection_seed": 410000,
+      "window": 25
+    },
+    "B_early_contact": {
+      "early_block_displacement_min_px": 10.0,
+      "early_window": 10,
+      "primary_metric": "pose_auc10",
+      "selection_seed": 420000,
+      "window": 10
+    }
+  },
+  "cem": {
+    "action_dim": 2,
+    "frameskip": 5,
+    "model_horizon": 5,
+    "num_samples": 200,
+    "objective": {"alpha": 1, "base": 2, "mode": "staged", "step": 0},
+    "opt_steps": 10,
+    "topk": 30
+  },
+  "checkpoint": "/home/zhaoqing/adajepa/checkpoints/pushobj_shape_shift/checkpoints/model_latest.pth",
+  "data": "/home/zhaoqing/adajepa/data/pushobj_eval/val_T/plan_targets.pkl",
+  "design_id": "persistent-context-v2-pushobj-tool-rotation-stage0-v1",
+  "factor": {
+    "dev_degrees": [-22.5, -7.5, 7.5, 22.5],
+    "formal_degrees": [-25.0, -10.0, 10.0, 25.0],
+    "population_prior_degrees": 0.0,
+    "train_degrees": [-30.0, -15.0, 0.0, 15.0, 30.0],
+    "type": "persistent_tool_coordinate_rotation"
+  },
+  "gate": {
+    "bootstrap_resamples": 20000,
+    "bootstrap_seed": 6401,
+    "ci_lower_strictly_gt": 0.0,
+    "direction_fraction_min": 0.7,
+    "identity_max_abs_max": 1e-6,
+    "plan_changed_fraction_min": 0.95,
+    "relative_improvement_min": 0.25
+  },
+  "metric": {
+    "angle_scale_radians": 0.3490658503988659,
+    "exclude_initial_state": true,
+    "position_scale_px": 20.0,
+    "pose_cost": "block_position_error/20 + wrapped_block_angle_error/(pi/9)"
+  },
+  "protocol": {
+    "actions_per_episode": 25,
+    "open_loop": true,
+    "paired_cem_seed": true,
+    "scenarios_per_factor": 8,
+    "stage0_dev_indices": [0, 499],
+    "stop_after_first_go": true,
+    "stop_after_second_no_go": true,
+    "withhold_formal_indices": [500, 999]
+  }
+}

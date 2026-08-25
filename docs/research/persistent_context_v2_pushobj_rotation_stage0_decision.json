@@ -1,0 +1,36 @@
+{
+  "candidate_A": {
+    "bootstrap_ci95_delta": [0.38412365008320853, 1.352723354088362],
+    "direction_fraction": 0.65625,
+    "n_pairs": 32,
+    "oracle_mean": 5.273545088539602,
+    "plan_changed_fraction": 1.0,
+    "primary_metric": "pose_auc25",
+    "prior_mean": 6.086009865902757,
+    "relative_improvement": 0.13349711802391895
+  },
+  "candidate_B": {
+    "bootstrap_ci95_delta": [0.01143498570022376, 0.27229084606863047],
+    "direction_fraction": 0.625,
+    "n_pairs": 32,
+    "oracle_mean": 8.361985579147554,
+    "plan_changed_fraction": 1.0,
+    "primary_metric": "pose_auc10",
+    "prior_mean": 8.501165069380885,
+    "relative_improvement": 0.01637181363935876
+  },
+  "design_id": "persistent-context-v2-pushobj-tool-rotation-stage0-v1",
+  "design_sha256": "a1c1f077890d2ec591871eab86e0c26cab263557840d2ce8871f69f65a8aa299",
+  "current_assessment": {
+    "candidate_A": "POSITIVE_MEAN_CI_ABOVE_ZERO_MAJORITY_POSITIVE",
+    "candidate_B": "SMALL_POSITIVE_MEAN_CI_ABOVE_ZERO_MAJORITY_POSITIVE",
+    "fixed_effect_thresholds_active": false,
+    "history_next_step": "USER_DECISION"
+  },
+  "legacy_threshold_decision": {
+    "formal_history_authorized": false,
+    "parent_decision": "NO-GO",
+    "reason": "Both preregistered candidates failed the former 25% relative-improvement and 70% paired-direction gates.",
+    "status": "SUPERSEDED_BY_USER_2026-08-22"
+  }
+}

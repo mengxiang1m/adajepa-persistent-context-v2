@@ -1,0 +1,55 @@
+{
+  "status": "FROZEN_BEFORE_DEVELOPMENT_RESULTS",
+  "contract_id": "persistent-context-v2-pointmaze-actuator-lag-stage0-v1",
+  "factor": {
+    "name": "actuator_lag_rho",
+    "equation": "e_t = rho * e_(t-1) + (1-rho) * clip(command_t,-1,1)",
+    "episode_initial_executed_action": [0.0, 0.0],
+    "train": [0.0, 0.2, 0.4, 0.6, 0.8],
+    "development": [0.1, 0.3, 0.5, 0.7],
+    "reserved_formal": [0.15, 0.35, 0.55, 0.75],
+    "population_prior_mean": 0.4
+  },
+  "cem": {
+    "num_samples": 200,
+    "topk": 30,
+    "opt_steps": 10,
+    "model_horizon": 5,
+    "low_level_horizon": 25
+  },
+  "candidates": [
+    {
+      "id": "A_hard_goal",
+      "run_if": "always",
+      "scenarios_per_factor": 8,
+      "scenario_seed_base": 120000,
+      "scenario_seed_stride": 1000,
+      "primary_metric": "auc_k25"
+    },
+    {
+      "id": "B_local_waypoint",
+      "run_if": "A_hard_goal_fails",
+      "scenarios_per_factor": 8,
+      "scenario_seed_base": 220000,
+      "scenario_seed_stride": 1000,
+      "free_cell_bfs_distance": 2,
+      "position_jitter": 0.1,
+      "initial_and_goal_velocity": 0.0,
+      "primary_metric": "auc_k10"
+    }
+  ],
+  "bootstrap": {
+    "unit": "paired_scenario",
+    "draws": 20000,
+    "seed": 5401
+  },
+  "go_gates": {
+    "relative_improvement_min": 0.25,
+    "paired_ci_lower_strictly_positive": true,
+    "direction_fraction_min": 0.7,
+    "action_plan_change_fraction": 1.0,
+    "identity_audit_required": true
+  },
+  "stop_if_both_fail": "NO_GO_POINTMAZE_ACTUATOR_LAG_TASK",
+  "formal_history_contract_authorized_before_stage0": false
+}

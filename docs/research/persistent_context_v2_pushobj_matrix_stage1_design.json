@@ -1,0 +1,57 @@
+{
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 1040301,
+  "conditions": ["persistent", "no_persistence"],
+  "contract_id": "persistent-context-v2-pushobj-bayesian-matrix-history-stage1-v1",
+  "donor_seed": 1040200,
+  "episodes_per_sequence": 2,
+  "estimator": {
+    "command_norm_min": 0.0001,
+    "gain_ratio_max": 1.55,
+    "gain_ratio_min": 0.45,
+    "observation_noise_std": 0.01,
+    "prior_covariance_ridge": 0.0001,
+    "type": "structured-gaussian-bayesian-rotation-gain-matrix"
+  },
+  "formal_factors": [
+    {"gain": 0.82, "rotation_degrees": -25.0},
+    {"gain": 1.18, "rotation_degrees": -25.0},
+    {"gain": 0.82, "rotation_degrees": -10.0},
+    {"gain": 1.18, "rotation_degrees": -10.0},
+    {"gain": 0.82, "rotation_degrees": 10.0},
+    {"gain": 1.18, "rotation_degrees": 10.0},
+    {"gain": 0.82, "rotation_degrees": 25.0},
+    {"gain": 1.18, "rotation_degrees": 25.0}
+  ],
+  "main_metric": "E2_pose_auc10_to_waypoint",
+  "no_persistence_factor_shift_at_E2": 3,
+  "planner": {
+    "deadline_actions": 10,
+    "model_horizon": 2,
+    "num_samples": 200,
+    "opt_steps": 10,
+    "topk": 30
+  },
+  "policies": [
+    "population_prior",
+    "current_only",
+    "correct_history",
+    "shuffled_history",
+    "wrong_sequence_history",
+    "true_factor_oracle"
+  ],
+  "prior_train_gain_support": [0.75, 1.0, 1.25],
+  "prior_train_rotation_support_degrees": [-30.0, -15.0, 0.0, 15.0, 30.0],
+  "segment_indices": [
+    507, 822, 885, 699, 706, 790, 833, 631,
+    746, 690, 531, 739, 788, 875, 593, 506,
+    503, 511, 714, 973, 558, 583, 520, 584,
+    854, 697, 700, 600, 981, 750, 856, 767,
+    549, 807, 781, 762, 537, 979, 512, 649,
+    834, 686, 570, 592, 878, 821, 972, 534,
+    712, 702, 768, 855, 840, 800, 950, 747,
+    742, 763, 585, 587, 594, 602, 930, 901
+  ],
+  "segment_selection_seed": 1040000,
+  "sequences_per_condition": 32
+}

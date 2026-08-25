@@ -1,0 +1,45 @@
+{
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 850301,
+  "conditions": [
+    "persistent",
+    "no_persistence"
+  ],
+  "contract_id": "persistent-context-v2-pushobj-rotation-early-waypoint-history-stage1-v1",
+  "deadline_actions": 10,
+  "donor_seed": 850200,
+  "episodes_per_sequence": 4,
+  "estimator": {
+    "angle_clip_degrees": 35.0,
+    "command_norm_min": 0.0001,
+    "norm_residual_max": 0.002,
+    "type": "observed-proprio-free-motion-procrustes-mle"
+  },
+  "factor_schedule_seed": 850100,
+  "formal_factors_degrees": [
+    -25.0,
+    -10.0,
+    10.0,
+    25.0
+  ],
+  "formal_pool_end_exclusive": 1000,
+  "formal_pool_start": 500,
+  "minimum_nominal_block_displacement_at_10": 10.0,
+  "planner": {
+    "model_horizon": 2,
+    "num_samples": 200,
+    "opt_steps": 10,
+    "topk": 30
+  },
+  "policies": [
+    "population_prior",
+    "current_only",
+    "correct_history",
+    "shuffled_history",
+    "wrong_sequence_history",
+    "true_factor_oracle"
+  ],
+  "population_prior_degrees": 0.0,
+  "segment_selection_seed": 850000,
+  "sequences_per_condition": 32
+}

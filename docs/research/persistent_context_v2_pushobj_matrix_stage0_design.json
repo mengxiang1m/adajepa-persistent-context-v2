@@ -1,0 +1,38 @@
+{
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 1000101,
+  "contract_id": "persistent-context-v2-pushobj-rotation-gain-matrix-stage0-v1",
+  "deadline_actions": 10,
+  "development_factors": [
+    {"gain": 0.85, "rotation_degrees": -22.5},
+    {"gain": 1.15, "rotation_degrees": -22.5},
+    {"gain": 0.85, "rotation_degrees": -7.5},
+    {"gain": 1.15, "rotation_degrees": -7.5},
+    {"gain": 0.85, "rotation_degrees": 7.5},
+    {"gain": 1.15, "rotation_degrees": 7.5},
+    {"gain": 0.85, "rotation_degrees": 22.5},
+    {"gain": 1.15, "rotation_degrees": 22.5}
+  ],
+  "main_metric": "pose_auc10_to_waypoint",
+  "minimum_nominal_block_displacement_at_10": 10.0,
+  "planner": {
+    "model_horizon": 2,
+    "num_samples": 200,
+    "opt_steps": 10,
+    "topk": 30
+  },
+  "population_prior_matrix": [
+    [0.9327804920294028, 0.0],
+    [0.0, 0.9327804920294028]
+  ],
+  "segment_indices": [
+    326, 233, 86, 50, 180, 460, 147, 95,
+    283, 487, 208, 129, 240, 339, 89, 396,
+    449, 397, 327, 31, 121, 338, 280, 282,
+    5, 285, 19, 134, 232, 370, 116, 456
+  ],
+  "selection_seed": 1000000,
+  "train_gain_support": [0.75, 1.0, 1.25],
+  "train_rotation_support_degrees": [-30.0, -15.0, 0.0, 15.0, 30.0],
+  "transform": "effective_action_equals_gain_times_rotation_times_command"
+}
